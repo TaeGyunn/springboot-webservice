@@ -1,16 +1,23 @@
+// 플러그인 의존성 관리를 위한 설정
 buildscript{
+    // ext는 전역변수로 설정하겠다라는 뜻임
     ext{
         springBootVersion = '2.1.7.RELEASE'
     }
+    // repositories는 각종 의존성(라이브러리)들이 어떤 원격 저장소에서 받을지를 정한다.
     repositories{
+        // mavenCentral은 이전부터 많이 사용하는 저장소이지만 업로드하기 위해 많은 과정과 설정이 필요하다
+        // 최근에 나온 jcenter은 이런 문제점을 개선하여 라이브러리 업로드를 간단하게 하였다. 추세는 mavencentral -> jcenter이다.
         mavenCentral()
         jcenter()
     }
+    // 프로젝트 개발에 필요한 의존성들을 선언하는 곳이다.
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
+// 4개의 플러그인은 자바와 스프링부트를 사용하기 위한 필수 플러그인
 apply plugin : 'java'
 apply plugin : 'eclipse'
 apply plugin : 'org.springframework.boot'
@@ -26,5 +33,25 @@ repositories {
 
 dependencies{
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    //스프링 부트용 Spring Data Jpa추상화 라이브러리
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    //인메모리 관계형 데이터베이스 이다. 별도의 설치가 필요 없이 프로젝트 의존성만으로 관리할 수 있다.
+    //메모리에서 실행되기 때문에 애플리케이션을 재시작할 때마다 초기화 된다는점으로 테스트 용도로 많이 사용
+    compile('com.h2database:h2')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    
+    //소셜 로그인 등 클라이언트 입장에서 소셜기능 구현시 필요한 의존성
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    compile('org.springframework.session:spring-session-jdbc')
+
+    testCompile("org.springframework.security:spring-security-test")
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
+
+
+
 }
