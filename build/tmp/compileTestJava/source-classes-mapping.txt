@@ -1,0 +1,10 @@
+book/taegyun/com/web/IndexControllerTest.java
+ book.taegyun.com.web.IndexControllerTest
+book/taegyun/com/domain/posts/PostsRepositoryTest.java
+ book.taegyun.com.domain.posts.PostsRepositoryTest
+book/taegyun/com/web/dto/HelloResponseDtoTest.java
+ book.taegyun.com.web.dto.HelloResponseDtoTest
+book/taegyun/com/web/HelloControllerTest.java
+ book.taegyun.com.web.HelloControllerTest
+book/taegyun/com/web/PostsApiControllerTest.java
+ book.taegyun.com.web.PostsApiControllerTest
